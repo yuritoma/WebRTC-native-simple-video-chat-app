@@ -1,49 +1,17 @@
-// App.js
+// client/src/App.js
+import { Routes, Route } from "react-router-dom";
+import LobbyScreen from "./screens/Lobby";
+import RoomPage from "./screens/Room";
 
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import VideoChat from './VideoChat';
-
-const App = () => {
-  const [roomId, setRoomId] = useState('');
-
-  const handleStart = () => {
-    // Trim and validate the room ID
-    const trimmedRoomId = roomId.trim();
-    if (trimmedRoomId !== '') {
-      // Redirect to the video chat route with the room ID as a hash
-      window.location.href = `/video-chat/${trimmedRoomId}`;
-    }
-  };
-
+function App() {
   return (
-    <Router>
+    <div className="App">
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <label htmlFor="roomId">Room ID:</label>
-              <input
-                type="text"
-                id="roomId"
-                value={roomId}
-                onChange={(e) => setRoomId(e.target.value)}
-                placeholder="Enter Room ID"
-              />
-              <button onClick={handleStart} disabled={!roomId}>
-                Start Video Chat
-              </button>
-            </div>
-          }
-        />
-        <Route
-          path="/video-chat/:roomId"
-          element={<VideoChat />}
-        />
+        <Route path="/" element={<LobbyScreen />} />
+        <Route path="/room/:roomId" element={<RoomPage />} />
       </Routes>
-    </Router>
+    </div>
   );
-};
+}
 
 export default App;
