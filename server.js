@@ -17,7 +17,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-mongoose.connect('mongodb+srv://yuritoma4:Cws1234567890.@andrey.v78ia01.mongodb.net/');
+mongoose.connect('mongodb+srv://yuritoma4:<password>@andrey.v78ia01.mongodb.net/');
 
 io.on('connection', (socket) => {
   console.log('User connected');
